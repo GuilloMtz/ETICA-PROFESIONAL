@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foro de reforzamiento. Agencias de maternidad subrogada, ¿serían éticas en el México de los años 70?</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f5f5f5;
+            color: #333333;
+        }
+        .cover-page {
+            background-color: #580231;
+            color: #FFFFFF;
+            padding: 4rem;
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .cover-page h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+        }
+        .cover-page h2 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: #DEB980;
+        }
+        .cover-page p {
+            font-size: 1.25rem;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .flow-arrow::after {
+            content: '→';
+            font-size: 2rem;
+            color: #DEB980;
+            margin: 0 1rem;
+        }
+        .list-item {
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <section id="cover-page" class="cover-page">
+        <h1>Universidad Nacional Rosario Castellanos</h1>
+        <h2>Materia</h2>
+        <p>ÉTICA PROFESIONAL</p>
+        <h2>Nombre</h2>
+        <p>Juan Guillermo Martínez Flores</p>
+        <h2>Docente</h2>
+        <p>Fernando Antonio Cruz</p>
+        <a href="#main-content" class="mt-8 px-6 py-3 bg-[#DEB980] text-[#580231] font-bold rounded-lg shadow-md hover:bg-[#D5B07C] transition-colors">Ver Documento</a>
+    </section>
+
+    <main id="main-content" class="container mx-auto p-4 md:p-8">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-3xl md:text-4xl font-bold text-[#580231] mb-4">Foro de reforzamiento. Agencias de maternidad subrogada, ¿serían éticas en el México de los años 70?</h1>
+            <p class="text-lg text-[#DEB980]">Un análisis comparativo del cambio ético-social a través de cinco décadas.</p>
+        </header>
+
+        <main class="space-y-12">
+
+            <section id="introduction">
+                <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                    <h2 class="text-2xl font-bold text-[#DEB980] mb-4">Un Salto en el Tiempo: De la Ciencia Ficción a la Realidad Jurídica</h2>
+                    <div class="space-y-4 text-base md:text-lg leading-relaxed">
+                        <p>Para poder reflexionar sobre si las agencias de maternidad subrogada habrían sido éticas en el México de 1970, primero es necesario reconocer la enorme distancia que separa a aquella sociedad de la actual en lo que respecta a la reproducción asistida. En aquel tiempo, el concepto mismo de la gestación subrogada era prácticamente inexistente. La fecundación in vitro, pieza clave para hacerla posible, aún no estaba disponible, y tampoco existía un marco legal, social o ético que pudiera darle sentido a una práctica que parecía más propia de la ciencia ficción que de la vida cotidiana. Por ello, no podemos hablar de una comparación directa sobre la práctica en sí, sino más bien de un ejercicio de imaginar las condiciones que la habrían rodeado en caso de haber existido.</p>
+                        <p>El análisis que propongo no se centra en juzgar lo que nunca ocurrió, sino en entender cómo las transformaciones posteriores en distintos ámbitos han moldeado el debate. El marco legal, la posición social de la mujer gestante y el principio de filiación han cambiado de manera tan profunda que nos permiten ver con claridad el salto que dimos de un escenario de absoluto silencio a uno en el que la complejidad y los desafíos son inevitables. Hoy, la discusión ya no es si la práctica puede o no existir, sino qué condiciones deben garantizarse para que, en el presente, pueda considerarse ética y respetuosa de todos los involucrados.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="legal-framework">
+                <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                    <h2 class="text-2xl font-bold text-[#DEB980] mb-4">¿Cuál era la diferencia fundamental en el marco legal?</h2>
+                    <p class="text-base md:text-lg mb-6 leading-relaxed">La diferencia más radical es que en 1970 no existía marco legal alguno porque la gestación subrogada no era una posibilidad tecnológica. El debate era un vacío. Hoy, nos encontramos en un escenario de regulación fragmentada. Como señala el informe de GIRE, únicamente dos estados, Tabasco y Sinaloa, han llegado a legislar al respecto, aunque con modelos muy distintos y problemáticos. El resto del país opera en una ambigüedad que genera incertidumbre y desprotección, demostrando que, aunque hemos avanzado, el camino hacia un marco jurídico claro, uniforme y con perspectiva de derechos humanos todavía es largo.</p>
+                    <div class="chart-container">
+                        <canvas id="legalChart"></canvas>
+                    </div>
+                     <p class="text-center text-sm text-gray-500 mt-4">Estado de la Regulación de la Gestación Subrogada en México (Actual)</p>
+                </div>
+            </section>
+            
+            <section id="surrogate-rights">
+                <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                    <h2 class="text-2xl font-bold text-[#DEB980] mb-4">¿Cómo ha cambiado la perspectiva sobre la mujer gestante?</h2>
+                    <p class="text-base md:text-lg mb-6 leading-relaxed">El cambio de paradigma en el rol de la mujer gestante es, quizás, la transformación más importante. En un México de 1970, con una visión social muy distinta sobre la autonomía corporal de las mujeres, cualquier acuerdo de este tipo se habría desarrollado en un contexto de enorme vulnerabilidad y sin reconocimiento de sus derechos. El enfoque actual, al menos desde una perspectiva ética y de derechos humanos como la que GIRE promueve, sitúa a la persona gestante en el centro. Se exige su consentimiento informado, la protección de su salud física y mental, y condiciones contractuales justas que impidan la explotación. Hemos pasado de una invisibilización hipotética a una exigencia de protagonismo y protección de su dignidad.</p>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr>
+                                    <th class="py-3 px-4 bg-[#580231] text-white font-bold uppercase text-sm border-b border-gray-200">Aspecto Clave</th>
+                                    <th class="py-3 px-4 bg-[#580231] text-white font-bold uppercase text-sm border-b border-gray-200">México 1970 (Hipotético)</th>
+                                    <th class="py-3 px-4 bg-[#580231] text-white font-bold uppercase text-sm border-b border-gray-200">México Actual (Marco Ético-Legal)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="py-3 px-4 border-b border-gray-200 font-semibold">Autonomía y Consentimiento</td>
+                                    <td class="py-3 px-4 border-b border-gray-200">Limitado y socialmente condicionado. Sin herramientas legales para decidir sobre su cuerpo.</td>
+                                    <td class="py-3 px-4 border-b border-gray-200">Pilar del proceso. Debe ser informado, libre, previo y puede ser revocado.</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="py-3 px-4 border-b border-gray-200 font-semibold">Protección Legal y Derechos</td>
+                                    <td class="py-3 px-4 border-b border-gray-200">Inexistente. La mujer gestante carecería de cualquier tipo de protección o recurso legal.</td>
+                                    <td class="py-3 px-4 border-b border-gray-200">Exigencia de contratos justos, acceso a la justicia y protección contra la explotación.</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="py-3 px-4 border-b border-gray-200 font-semibold">Acceso a la Salud</td>
+                                    <td class="py-3 px-4 border-b border-gray-200">Enfoque centrado en el producto de la gestación, no en el bienestar de la gestante.</td>
+                                    <td class="py-3 px-4 border-b border-gray-200">Derecho a la salud integral (física y psicológica) antes, durante y después del parto.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="filiation">
+                 <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                    <h2 class="text-2xl font-bold text-[#DEB980] mb-4">¿Y qué pasaba con la determinación de quiénes son los padres?</h2>
+                    <p class="text-base md:text-lg mb-8 leading-relaxed">La forma de determinar la filiación es la tercera gran diferencia. El México de 1970 se regía estrictamente por el principio del derecho romano "mater semper certa est", que significa "la madre es siempre quien da a luz". No había espacio para cuestionar que la mujer que paría era la madre legal. Hoy, la gestación subrogada desafía directamente este principio. La filiación ya no se basa únicamente en el hecho biológico del parto, sino en la "voluntad procreacional", es decir, el deseo y compromiso de las personas que solicitaron el procedimiento para asumir la paternidad o maternidad. Este cambio obliga a crear mecanismos legales que reconozcan a los padres de intención, algo impensable hace cincuenta años.</p>
+                    <h3 class="text-xl font-bold text-center text-[#580231] mb-6">Evolución del Principio de Filiación</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-center">
+                        <div>
+                            <h4 class="text-lg font-semibold mb-4">Modelo 1970: Certeza Biológica</h4>
+                            <div class="flex flex-col items-center justify-center">
+                                <div class="bg-[#580231] text-white p-4 rounded-lg shadow-md w-full max-w-xs">
+                                    <p class="font-bold">Parto</p>
+                                </div>
+                                <span class="text-4xl text-[#DEB980] my-2">↓</span>
+                                <div class="bg-[#333333] text-white p-4 rounded-lg shadow-md w-full max-w-xs">
+                                    <p class="font-bold">Filiación Materna Automática</p>
+                                    <p class="text-sm italic">"Mater semper certa est"</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-semibold mb-4">Modelo Actual: Voluntad Procreacional</h4>
+                            <div class="flex flex-col items-center justify-center">
+                                 <div class="bg-[#DEB980] text-[#580231] p-4 rounded-lg shadow-md w-full max-w-xs">
+                                    <p class="font-bold">Acuerdo de Gestación</p>
+                                </div>
+                                <span class="text-4xl text-[#DEB980] my-2">↓</span>
+                                <div class="bg-[#580231] text-white p-4 rounded-lg shadow-md w-full max-w-xs">
+                                    <p class="font-bold">Reconocimiento Legal de Padres de Intención</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="conclusion">
+                <div class="bg-[#580231] text-white rounded-lg shadow-lg p-6 md:p-8">
+                    <h2 class="text-2xl font-bold text-[#DEB980] mb-4">Conclusión: Un Debate Propio de Nuestro Tiempo</h2>
+                    <div class="space-y-4 text-base md:text-lg leading-relaxed">
+                        <p>En definitiva, plantear la existencia de agencias de maternidad subrogada en el México de 1970 es un anacronismo. La falta de tecnología, de un marco legal y, sobre todo, de un paradigma de derechos centrado en la autonomía de las mujeres, lo hacía inviable no solo en la práctica, sino también en la teoría. Las diferencias que hemos explorado —la ausencia de ley frente a la regulación parcial, la invisibilidad de la gestante frente a la exigencia de su protección, y la certeza biológica frente a la voluntad procreacional— dibujan el contorno de un debate ético que solo podía nacer en el presente.</p>
+                        <p>El desafío actual ya no es imaginar si la gestación subrogada es posible, sino cómo construir un marco regulatorio integral que sea ético, que proteja a todas las partes involucradas y que responda a las complejas realidades sociales y familiares de nuestro tiempo, garantizando siempre la dignidad y los derechos humanos.</p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+        
+        <footer class="text-left mt-12 pt-8 border-t border-gray-200">
+            <h3 class="text-lg font-semibold text-[#580231] mb-4">Referencias</h3>
+            <ol class="list-decimal pl-6 space-y-2 text-sm text-gray-600">
+                <li>García, A. K. (2023, julio 7). <em>Gestación subrogada en México: en medio de ausencia de regulación y posiciones encontradas</em>. El Economista. Recuperado de <a href="https://www.eleconomista.com.mx/arteseideas/Gestacion-subrogada-en-Mexico-en-medio-de-ausencia-de-regulacion-y-posiciones-encontradas-20230707-0046.html" class="text-[#580231] hover:underline">https://www.eleconomista.com.mx/arteseideas/Gestacion-subrogada-en-Mexico-en-medio-de-ausencia-de-regulacion-y-posiciones-encontradas-20230707-0046.html</a></li>
+                <li>Grupo de Información en Reproducción Elegida (GIRE). (2019). <em>Gestación subrogada en México: Resultados de una mala regulación</em>. Recuperado de <a href="https://gire.org.mx/wp-content/uploads/2019/11/Gestacio%CC%81n-subrogada-en-Me%CC%81xico.pdf" class="text-[#580231] hover:underline">https://gire.org.mx/wp-content/uploads/2019/11/Gestacio%CC%81n-subrogada-en-Me%CC%81xico.pdf</a></li>
+                <li>Grupo de Información en Reproducción Elegida (GIRE). (n.d.). <em>Gestación subrogada en México</em>. Recuperado de <a href="https://gestacion-subrogada.gire.org.mx/#/" class="text-[#580231] hover:underline">https://gestacion-subrogada.gire.org.mx/#/</a></li>
+            </ol>
+        </footer>
+
+    </main>
+
+    <script>
+        function processChartLabels(labels) {
+            const maxLen = 16;
+            return labels.map(label => {
+                if (label.length <= maxLen) {
+                    return label;
+                }
+                const words = label.split(' ');
+                let currentLine = '';
+                const newLabel = [];
+                words.forEach(word => {
+                    if ((currentLine + ' ' + word).trim().length > maxLen) {
+                        newLabel.push(currentLine.trim());
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                });
+                if (currentLine) {
+                    newLabel.push(currentLine.trim());
+                }
+                return newLabel;
+            });
+        }
+
+        const ctx = document.getElementById('legalChart').getContext('2d');
+        const legalChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: processChartLabels(['Estados con Regulación Específica', 'Estados sin Regulación Específica']),
+                datasets: [{
+                    label: 'Número de Entidades Federativas',
+                    data: [2, 30],
+                    backgroundColor: [
+                        '#DEB980',
+                        '#580231'
+                    ],
+                    borderColor: [
+                        '#DEB980',
+                        '#580231'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        ticks: {
+                           stepSize: 5
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                  return label.join(' ');
+                                } else {
+                                  return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
