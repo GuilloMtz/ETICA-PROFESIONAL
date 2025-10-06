@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: Ética y Responsabilidad Social en la Maternidad Subrogada</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'Patria';
+            src: local('Georgia'), local('Times New Roman'), serif;
+            font-weight: 700;
+        }
+
+        body {
+            font-family: 'Noto Sans', sans-serif;
+            background-color: #F9F7F5;
+            color: #333333;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Patria', 'Georgia', serif;
+            color: #9F2241;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Encabezado Académico */
+        .academic-header {
+            background-color: #9F2241; /* Guinda */
+            color: #FFFFFF; /* Blanco */
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .academic-header h1 {
+            font-size: 1.8rem;
+            margin: 0 0 20px 0;
+            color: #FFFFFF;
+            border-bottom: 1px solid #BC955C; /* Dorado */
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        .academic-details p {
+            margin: 6px 0;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        .academic-details p strong {
+            color: #BC955C; /* Dorado */
+            font-weight: normal;
+        }
+
+        /* Estructura de Tarjetas */
+        .card {
+            background-color: #FFFFFF;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+            margin-bottom: 40px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .card-header {
+            padding: 20px 30px;
+            background-color: #235B4E; /* Verde Oscuro */
+            color: #FFFFFF;
+        }
+        .card-header h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: #FFFFFF;
+            font-family: 'Noto Sans', sans-serif;
+            font-weight: 700;
+        }
+        .card-header-alt {
+            padding: 20px 30px;
+            background-color: #BC955C; /* Dorado */
+            color: #FFFFFF;
+        }
+        .card-header-alt h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: #FFFFFF;
+            font-family: 'Noto Sans', sans-serif;
+            font-weight: 700;
+        }
+        .card-body {
+            padding: 30px 40px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            flex-grow: 1;
+        }
+        .section-divider {
+            text-align: center;
+            font-family: 'Patria', 'Georgia', serif;
+            font-size: 2.2rem;
+            color: #9F2241;
+            margin: 50px 0;
+        }
+        .question-block {
+            border-left: 4px solid #BC955C;
+            padding-left: 25px;
+            margin-bottom: 40px;
+        }
+        .question-block h3 {
+            font-size: 1.3rem;
+            color: #235B4E;
+            font-family: 'Noto Sans', sans-serif;
+            font-weight: 700;
+        }
+        .chart-container {
+            position: relative;
+            height: 300px;
+            width: 100%;
+            max-width: 300px;
+            margin: auto;
+        }
+        .flowchart-step {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #eee;
+        }
+        .flowchart-step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .references-list a {
+            color: #235B4E;
+            text-decoration: none;
+            word-break: break-all;
+        }
+        .references-list a:hover {
+            text-decoration: underline;
+        }
+        .explanation-text {
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: #fdfaf6;
+            border-radius: 6px;
+            border-left: 3px solid #BC955C;
+            font-size: 0.95rem;
+            color: #555;
+        }
+        .quote-block {
+            margin: 2.5rem auto;
+            padding: 1.5rem;
+            border-left: 5px solid #9F2241; /* Guinda */
+            background-color: #F9F7F5;
+            max-width: 90%;
+            text-align: center;
+        }
+        .quote-block p {
+            font-family: 'Noto Sans', sans-serif;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: #333333;
+            margin-bottom: 0.5rem;
+        }
+        .quote-block footer {
+            font-size: 0.9rem;
+            color: #98989A;
+            font-style: normal;
+        }
+        .glossary-term {
+            font-weight: 700;
+            color: #235B4E;
+        }
+
+        /* ESTILOS PARA IMPRESIÓN / PDF */
+        @media print {
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .card, .quote-block, .section-divider {
+                page-break-inside: avoid;
+            }
+            .academic-header, .card, .card-header, .card-header-alt {
+                background-color: transparent !important; /* Fondos sólidos pueden no imprimirse bien */
+                box-shadow: none !important;
+                border: 1px solid #ddd;
+            }
+             .academic-header {
+                background-color: #9F2241 !important;
+             }
+             .card-header {
+                 background-color: #235B4E !important;
+             }
+             .card-header-alt {
+                 background-color: #BC955C !important;
+             }
+            .chart-container {
+                /* Asegura que los gráficos se rendericen en el PDF */
+                position: relative !important;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="academic-header">
+        <div class="container" style="padding: 0;">
+            <h1>Universidad Nacional Rosario Castellanos</h1>
+            <div class="academic-details">
+                <p><strong>Nombre:</strong> Juan Guillermo Martinez Flores</p>
+                <p><strong>Materia:</strong> Ética</p>
+                <p><strong>Docente:</strong> Fernando Antonio Cruz</p>
+                <p><strong>Actividad:</strong> Experiencia de aprendizaje. Responsabilidad social de las Agencias de maternidad subrogada</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <div class="card">
+             <div class="card-header">
+                <h2>Introducción y Fundamento Teórico</h2>
+            </div>
+            <div class="card-body text-center">
+                <p class="max-w-4xl mx-auto text-gray-700">La maternidad subrogada se encuentra en una compleja intersección de anhelos personales, avances médicos y responsabilidades éticas. Analizar esta práctica desde la perspectiva de la responsabilidad social es crucial para garantizar la dignidad y el bienestar de todas las partes. El presente análisis se fundamenta en el documento <strong>"Ética y responsabilidad social en los negocios"</strong> (2018), el cual explora la Responsabilidad Social Empresarial (RSE) como un pilar donde la ética debe integrarse en la cultura corporativa para responder a las demandas de sus grupos de interés (<strong>stakeholders</strong>) y coadyuvar al bien común.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header-alt">
+                <h2>Glosario</h2>
+            </div>
+            <div class="card-body">
+                <ul class="space-y-4">
+                    <li><strong class="glossary-term">Maternidad Subrogada:</strong> Acuerdo mediante el cual una mujer (gestante) acepta gestar un embarazo para otra persona o pareja (padres de intención), quienes serán los padres legales del niño al nacer.</li>
+                    <li><strong class="glossary-term">Responsabilidad Social:</strong> El compromiso consciente de una organización de cumplir con su finalidad, considerando el impacto de sus acciones en sus grupos de interés y en la sociedad, para contribuir al bien común.</li>
+                    <li><strong class="glossary-term">Stakeholders:</strong> Todos los "grupos de interés" afectados por las actividades de una empresa, incluyendo la mujer gestante, los padres de intención y el niño por nacer.</li>
+                    <li><strong class="glossary-term">Beneficencia y No Maleficencia:</strong> Principios éticos de actuar en beneficio de los demás (<em>beneficencia</em>) y, fundamentalmente, de no causar daño (<em>no maleficencia</em>).</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="quote-block">
+            <p>"Ninguna organización y ningún país podrán superar sus diferentes crisis si el beneficio individual prevalece."</p>
+            <footer>— Mirna Bañuelos Hernández (p. 6)</footer>
+        </div>
+
+        <h2 class="section-divider">Cuestionario Ético sobre la Maternidad Subrogada</h2>
+
+        <div class="card">
+            <div class="card-body">
+                
+                <!-- Pregunta 1 -->
+                <div class="question-block">
+                    <h3>1) Las agencias de maternidad subrogada ¿requerirán un código de ética especial?</h3>
+                    <div class="grid md:grid-cols-2 gap-8 items-center mt-4">
+                        <div>
+                            <p class="mb-4"><strong>Sí, de manera indispensable.</strong> A diferencia de negocios convencionales, estas agencias gestionan la creación de vida y el bienestar de personas en situaciones de vulnerabilidad. La RSE implica "entender y dar respuesta al conjunto de solicitudes que los diversos grupos que constituyen el entorno hacen a la empresa" <strong>(Falcón, 2018, p. 81)</strong>. En este caso, las "solicitudes" son existenciales, no comerciales, lo que exige un marco ético especializado.</p>
+                        </div>
+                        <div class="text-center">
+                             <h4 class="text-center font-bold mb-2" style="color: #333333; font-family: 'Noto Sans', sans-serif;">Gráfica 1: Jerarquía de Responsabilidad según la Vulnerabilidad de los Stakeholders</h4>
+                            <div class="chart-container">
+                                <canvas id="stakeholderChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="explanation-text">
+                        <p>El documento base enfatiza que cualquier organización debe integrar la ética "para fundamentar y aplicar la ética a la vida cotidiana" (Bañuelos, 2018, p. 4). Dado que las agencias de subrogación impactan directamente la dignidad humana, un código de ética especial se vuelve una necesidad ineludible para alinear su operación con un "sentido social", tal como lo promueve el texto.</p>
+                    </div>
+                </div>
+
+                <!-- Pregunta 2 -->
+                <div class="question-block">
+                    <h3>2) ¿Qué tipo de reglas le corresponden?</h3>
+                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-4">
+                        <div class="flowchart-step p-4 rounded-lg text-center" style="background-color: #fdfaf6;">
+                            <div class="text-3xl mb-2" style="color: #235B4E;">📜</div>
+                            <h4 class="font-semibold" style="color: #235B4E;">Transparencia Total</h4>
+                            <p class="text-sm text-gray-700">Divulgación completa de riesgos, costos y derechos legales.</p>
+                        </div>
+                        <div class="flowchart-step p-4 rounded-lg text-center" style="background-color: #fdfaf6;">
+                            <div class="text-3xl mb-2" style="color: #235B4E;">🛡️</div>
+                            <h4 class="font-semibold" style="color: #235B4E;">Protección y No Explotación</h4>
+                            <p class="text-sm text-gray-700">Protocolos para evaluar la idoneidad y prohibir la coacción económica.</p>
+                        </div>
+                        <div class="flowchart-step p-4 rounded-lg text-center" style="background-color: #fdfaf6;">
+                            <div class="text-3xl mb-2" style="color: #235B4E;">❤️</div>
+                            <h4 class="font-semibold" style="color: #235B4E;">Apoyo Integral</h4>
+                            <p class="text-sm text-gray-700">Soporte psicológico y legal obligatorio y continuo para la gestante.</p>
+                        </div>
+                        <div class="flowchart-step p-4 rounded-lg text-center" style="background-color: #fdfaf6;">
+                            <div class="text-3xl mb-2" style="color: #235B4E;">👶</div>
+                            <h4 class="font-semibold" style="color: #235B4E;">Bienestar del Niño</h4>
+                            <p class="text-sm text-gray-700">El interés superior del niño debe ser el principio rector de todas las decisiones.</p>
+                        </div>
+                    </div>
+                    <div class="explanation-text">
+                        <p>Estas reglas son la aplicación práctica de la RSE. El texto de referencia señala que la responsabilidad de una empresa se traduce en políticas de gestión (Bañuelos, 2018, p. 4). Estas reglas convierten los principios éticos en acciones concretas que protegen a los stakeholders, abordando directamente la necesidad de que las empresas respondan por el impacto de sus operaciones.</p>
+                    </div>
+                </div>
+
+                <div class="quote-block">
+                    <p>"La RSC ... tiene como fin evitar daños y/o producir beneficios para todas las partes interesadas en la actividad de la empresa."</p>
+                    <footer>— Victoria de Jesús Falcón Muñoz (p. 81)</footer>
+                </div>
+
+                <!-- Pregunta 3 -->
+                <div class="question-block">
+                    <h3>3) ¿Qué valores crees indispensables que se declaren en el código de ética?</h3>
+                     <div class="text-center mt-4">
+                        <h4 class="text-center font-bold mb-2" style="color: #333333; font-family: 'Noto Sans', sans-serif;">Gráfica 2: Pilares Éticos Indispensables para un Código de Conducta</h4>
+                        <div class="chart-container" style="height: 350px; max-width: 500px;">
+                            <canvas id="valuesRadarChart"></canvas>
+                        </div>
+                     </div>
+                    <p class="text-center mt-6 text-gray-600">Estos valores deben ser el núcleo de todas las operaciones, guiando cada decisión.</p>
+                    <div class="explanation-text">
+                        <p>Los valores son el "marco ético" que el PDF menciona como fundamental (Bañuelos, 2018, p. 4). Mientras que las reglas dictan "qué hacer", los valores definen el "porqué". Valores como la Dignidad Humana aseguran que la agencia mantenga su "sentido social" y no reduzca a las personas a meros instrumentos, un riesgo inherente en este tipo de negocio.</p>
+                    </div>
+                </div>
+
+                <!-- Pregunta 4 -->
+                <div class="question-block">
+                    <h3>4) ¿Cómo demostrarían este tipo de empresas una responsabilidad social solida?</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+                        <div class="p-4 rounded-lg text-center" style="background-color: #fdfaf6; border-left: 3px solid #BC955C;">
+                            <div class="text-3xl mb-2" style="color: #235B4E;">📊</div>
+                            <h4 class="font-semibold" style="color: #235B4E;">Informes de Sostenibilidad</h4>
+                            <p class="text-sm text-gray-700">Publicar datos verificables sobre el bienestar a largo plazo de las gestantes <strong>(Saldívar, 2018, p. 14)</strong>.</p>
+                        </div>
+                        <div class="p-4 rounded-lg text-center" style="background-color: #fdfaf6; border-left: 3px solid #BC955C;">
+                            <div class="text-3xl mb-2" style="color: #235B4E;">🤝</div>
+                            <h4 class="font-semibold" style="color: #235B4E;">Apoyo Post-Convenio</h4>
+                            <p class="text-sm text-gray-700">Crear fondos para educación, salud o desarrollo profesional de las gestantes.</p>
+                        </div>
+                        <div class="p-4 rounded-lg text-center" style="background-color: #fdfaf6; border-left: 3px solid #BC955C;">
+                            <div class="text-3xl mb-2" style="color: #235B4E;">🏢</div>
+                            <h4 class="font-semibold" style="color: #235B4E;">Inversión Comunitaria</h4>
+                            <p class="text-sm text-gray-700">Donar a ONGs que apoyen la salud materno-infantil.</p>
+                        </div>
+                        <div class="p-4 rounded-lg text-center" style="background-color: #fdfaf6; border-left: 3px solid #BC955C;">
+                            <div class="text-3xl mb-2" style="color: #235B4E;">⚖️</div>
+                            <h4 class="font-semibold" style="color: #235B4E;">Defensa de Regulación Ética</h4>
+                            <p class="text-sm text-gray-700">Promover activamente leyes que protejan a todas las partes.</p>
+                        </div>
+                    </div>
+                     <div class="explanation-text">
+                        <p>La RSE se demuestra con acciones, no solo intenciones. El PDF menciona que las políticas de RSE generan "impactos económicos, sociales y medioambientales tangibles" (Bañuelos, 2018, p. 4). Estas acciones son ejemplos de cómo una agencia puede hacer su compromiso tangible, demostrando un cuidado que va más allá del contrato y generando un impacto social positivo y medible.</p>
+                    </div>
+                </div>
+                
+                 <div class="quote-block">
+                    <p>"Ser responsable socialmente generará automáticamente más productividad, puesto que una mejora en las condiciones para los trabajadores optimizará también su eficacia."</p>
+                    <footer>— Porfirio Tamayo Contreras & Marlene Alderete Romo (p. 32)</footer>
+                </div>
+
+
+                <!-- Pregunta 5 -->
+                <div class="question-block" style="margin-bottom: 0;">
+                    <h3>5) ¿La responsabilidad social con quién debe entenderse en el problema?</h3>
+                     <div class="mt-6 space-y-6">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full" style="background-color: #9F2241; color: white;">
+                                <span class="text-2xl">🤰</span>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-semibold" style="color: #235B4E;">Con la Mujer Gestante</h4>
+                                <p class="text-gray-700">El actor más vulnerable. Se debe garantizar su salud, autonomía y dignidad en todo momento.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full" style="background-color: #9F2241; color: white;">
+                                <span class="text-2xl">👨‍👩‍👧</span>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-semibold" style="color: #235B4E;">Con los Padres de Intención</h4>
+                                <p class="text-gray-700">La responsabilidad es ser honestos sobre costos, procesos y probabilidades de éxito.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full" style="background-color: #9F2241; color: white;">
+                                <span class="text-2xl">👶</span>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-semibold" style="color: #235B4E;">Con el Niño por Nacer</h4>
+                                <p class="text-gray-700">El interés superior. Asegurar su derecho a la identidad, salud y un entorno estable es la máxima prioridad.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full" style="background-color: #9F2241; color: white;">
+                                <span class="text-2xl">🌍</span>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-semibold" style="color: #235B4E;">Con la Sociedad</h4>
+                                <p class="text-gray-700">No contribuir a la mercantilización de la vida. La responsabilidad es con todos los <strong>stakeholders</strong> <strong>(Falcón, 2018, p. 82)</strong>.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="explanation-text">
+                        <p>Esta sección define a los <strong>stakeholders</strong> o "grupos de interés" clave, un concepto central del PDF (Falcón, 2018, p. 82). La RSE exige que una empresa identifique a todos los afectados por sus actividades y asuma una responsabilidad diferenciada hacia cada uno. Al priorizar a los más vulnerables (la gestante y el niño), la agencia aplica un principio de justicia social inherente a un modelo ético de negocio.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+            <!-- Caso Práctico -->
+            <div class="card">
+                <div class="card-header-alt">
+                    <h2>Caso Práctico: Un Dilema Ético</h2>
+                </div>
+                <div class="card-body">
+                    <p class="font-semibold text-gray-700">"Consideremos el caso de 'Ana', una mujer gestante que, durante el embarazo, desarrolla un fuerte vínculo afectivo con el bebé y se cuestiona su decisión inicial. ¿Cómo aplicaría el código de ética de la agencia para proteger su bienestar emocional sin vulnerar los derechos de los padres de intención?"</p>
+                    <div class="explanation-text mt-4">
+                        <p><strong>Aplicación del Código de Ética:</strong> El valor de <strong>Respeto</strong> y la regla de <strong>Apoyo Integral</strong> serían cruciales. La agencia activaría de inmediato el soporte psicológico para Ana, ofreciéndole un espacio seguro. Simultáneamente, se iniciaría un diálogo mediado, basado en la <strong>Integridad y Honestidad</strong>, con los padres de intención para explorar soluciones que respeten el acuerdo legal y el estado emocional de Ana, siempre con el <strong>Bienestar del Niño</strong> como máxima prioridad.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Argumentos en Contra -->
+            <div class="card">
+                 <div class="card-header">
+                    <h2>Argumentos en Contra y Contraargumentos</h2>
+                </div>
+                <div class="card-body">
+                     <p class="font-semibold text-gray-700">"Una crítica frecuente es que la subrogada 'convierte el cuerpo en una mercancía'."</p>
+                    <div class="explanation-text mt-4">
+                        <p><strong>Contraargumento desde la RSE:</strong> Un código de ética sólido mitiga este riesgo al centrar el proceso en la <strong>Dignidad Humana</strong> y el <strong>Apoyo Integral</strong>, no en la transacción. Al asegurar que la gestante actúe con autonomía y no por coacción (Regla: Protección y No Explotación), el enfoque se desplaza de "mercantilización" a una colaboración basada en el respeto.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Tarjeta de Conclusión -->
+        <div class="card">
+            <div class="card-header-alt">
+                <h2>Conclusión</h2>
+            </div>
+            <div class="card-body text-center">
+                <p class="max-w-4xl mx-auto text-gray-700">En resumen, la operación de agencias de maternidad subrogada exige un código de ética especial (1) con reglas claras sobre transparencia, protección, apoyo y bienestar del niño (2). Este código debe basarse en valores indispensables como la dignidad humana, el respeto y la justicia (3). Para demostrar una RSE sólida, estas empresas deben ir más allá del contrato, implementando acciones verificables como informes de sostenibilidad y programas de apoyo post-convenio (4). Finalmente, su responsabilidad social se extiende a todos los involucrados, con una obligación primordial hacia los más vulnerables: la mujer gestante y el niño por nacer (5).</p>
+                
+                <div class="my-8 flex flex-wrap items-center justify-center gap-2 md:gap-4">
+                    <div class="p-3 rounded-lg text-center bg-gray-50 flex-shrink-0">
+                        <div class="text-xl">1️⃣</div>
+                        <div class="text-xs font-bold mt-1" style="color: #235B4E;">Código Ético</div>
+                    </div>
+                    <div class="text-2xl font-bold" style="color: #BC955C;">→</div>
+                    <div class="p-3 rounded-lg text-center bg-gray-50 flex-shrink-0">
+                        <div class="text-xl">2️⃣</div>
+                        <div class="text-xs font-bold mt-1" style="color: #235B4E;">Reglas Claras</div>
+                    </div>
+                     <div class="text-2xl font-bold" style="color: #BC955C;">→</div>
+                    <div class="p-3 rounded-lg text-center bg-gray-50 flex-shrink-0">
+                        <div class="text-xl">3️⃣</div>
+                        <div class="text-xs font-bold mt-1" style="color: #235B4E;">Valores</div>
+                    </div>
+                     <div class="text-2xl font-bold" style="color: #BC955C;">→</div>
+                    <div class="p-3 rounded-lg text-center bg-gray-50 flex-shrink-0">
+                        <div class="text-xl">4️⃣</div>
+                        <div class="text-xs font-bold mt-1" style="color: #235B4E;">Acciones (RSE)</div>
+                    </div>
+                     <div class="text-2xl font-bold" style="color: #BC955C;">→</div>
+                    <div class="p-3 rounded-lg text-center bg-gray-50 flex-shrink-0">
+                        <div class="text-xl">5️⃣</div>
+                        <div class="text-xs font-bold mt-1" style="color: #235B4E;">Stakeholders</div>
+                    </div>
+                </div>
+
+                <p class="max-w-4xl mx-auto text-gray-700">Para las agencias de maternidad subrogada, la responsabilidad social no es un complemento, sino el núcleo de su existencia. Un marco ético sólido, centrado en la dignidad humana y el bienestar a largo plazo de la mujer gestante y el niño, es la única vía para operar de manera legítima. El éxito no se mide en contratos firmados, sino en el respeto y el cuidado demostrados en cada paso del proceso.</p>
+            </div>
+        </div>
+        
+        <!-- Tarjeta de Referencias -->
+        <div class="card">
+            <div class="card-header">
+                <h2>Referencias</h2>
+            </div>
+            <div class="card-body">
+                <ul class="references-list list-none space-y-4">
+                    <li>Varios Autores. (2018). <em>Ética y responsabilidad social en los negocios</em>. Entretextos, Universidad Iberoamericana León.</li>
+                    <li>Suprema Corte de Justicia de la Nación. (2022). <em>Gestación subrogada en México</em>. Recuperado de <a href="https://www.sitios.scjn.gob.mx/cec/sites/default/files/publication/documents/2022-03/8.%20Gestacio%CC%81n%20subrogada%20en%20Me%CC%81xico%20.pdf" target="_blank">https://www.sitios.scjn.gob.mx/.../Gestación subrogada en México .pdf</a></li>
+                    <li>Núñez, R. (s.f.). <em>Aspectos éticos de la gestación subrogada</em>. Recuperado de <a href="https://rocionunez.com/pdfs/ASPECTOS%20%C3%89TICOS%20DE%20LA%20GESTACI%C3%93N%20SUBROGADA%20V.1.pdf" target="_blank">https://rocionunez.com/pdfs/ASPECTOS ÉTICOS...pdf</a></li>
+                    <li>Gómez Gómez, C. (2020). <em>La gestación subrogada: análisis jurídico y bioético en España</em>. Recuperado de <a href="https://digibuo.uniovi.es/dspace/bitstream/handle/10651/73045/TFG_CoralGomezGomez.pdf?sequence=4&isAllowed=y" target="_blank">https://digibuo.uniovi.es/dspace/.../TFG_CoralGomezGomez.pdf</a></li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const stakeholderChartCtx = document.getElementById('stakeholderChart').getContext('2d');
+        new Chart(stakeholderChartCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Mujer Gestante', 'Niño por Nacer', 'Padres de Intención', 'Sociedad'],
+                datasets: [{
+                    label: 'Grupos de Interés',
+                    data: [40, 30, 20, 10],
+                    backgroundColor: [
+                        '#9F2241', // Guinda
+                        '#235B4E', // Verde Oscuro
+                        '#BC955C', // Dorado
+                        '#e2d6c4'  // Dorado Suave
+                    ],
+                    borderColor: '#FFFFFF',
+                    borderWidth: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            font: { family: "'Noto Sans', sans-serif" }
+                        }
+                    },
+                    title: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                  return label.join(' ');
+                                } else {
+                                  return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        const valuesRadarChartCtx = document.getElementById('valuesRadarChart').getContext('2d');
+        new Chart(valuesRadarChartCtx, {
+            type: 'radar',
+            data: {
+                labels: ['Dignidad Humana', 'Respeto', ['Beneficencia y No', 'Maleficencia'], 'Justicia', ['Integridad y', 'Honestidad']],
+                datasets: [{
+                    label: 'Nivel de Importancia',
+                    data: [10, 9, 9, 8, 8],
+                    fill: true,
+                    backgroundColor: 'rgba(159, 34, 65, 0.2)',
+                    borderColor: '#9F2241', // Guinda
+                    pointBackgroundColor: '#9F2241',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: '#9F2241'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        angleLines: {
+                            color: '#e0e0e0'
+                        },
+                        grid: {
+                            color: '#e0e0e0'
+                        },
+                        pointLabels: {
+                            font: {
+                                size: 12,
+                                family: "'Noto Sans', sans-serif"
+                            },
+                            color: '#333333'
+                        },
+                        ticks: {
+                            backdropColor: 'transparent',
+                            stepSize: 2,
+                            color: '#98989A'
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 10
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                  return label.join(' ');
+                                } else {
+                                  return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+    </script>
+
+</body>
+</html>
+
